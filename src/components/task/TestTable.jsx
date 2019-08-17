@@ -15,12 +15,17 @@ class TestTable extends Component {
             returned: null,
 
             columns: [
-                { title: 'ID', field: 'id' },
-                { title: 'Index', field: 'index' },
-                { title: 'Country', field: 'country' },
-                { title: 'Value', field: 'value' },
+//                { title: 'ID', field: 'id', filtering: false },
+                { title: 'Index', field: 'index', filtering: false },
+                { title: 'Country', field: 'country', lookup: { "USA": "America", "NZL": "New Zealand", "AUS": "Australia" }, },
+                { title: 'Value', field: 'value', filtering: false },
                 { title: 'Store', field: 'store' },
                 { title: 'Returned', field: 'returned' },
+                {
+                    title: 'Currency',
+                    field: 'country',
+                    lookup: { "USA": "USD", "NZL": "NZD", "AUS": "AUD" },
+                },
             ],
         };
     }
@@ -35,11 +40,14 @@ class TestTable extends Component {
     render() {
         return (
             <div>
-                <tr><td>{this.state.country}</td></tr>
                 <MaterialTable
-                    title="Testing Table"
+                    title="Evelynne's Table"
                     columns={this.state.columns}
                     data={data}
+                    options={{
+                        filtering: true
+                    }}
+                    
                     />
             </div>
         )
