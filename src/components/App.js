@@ -3,7 +3,7 @@ import Menu from "./menu/Menu";
 
 const App = () => (
       <div className={"app"}>
-      <Menu />
+        <Menu />
       </div>
   );
 

@@ -3,6 +3,7 @@ import {Card, CardContent, Typography} from "@material-ui/core";
 
 import ExchangeRateCard from "./ExchangeRateCard";
 import ExampleTable from "./ExampleTable";
+import TestTable from "./TestTable";
 
 
 // import data from "../../data";
@@ -54,6 +55,7 @@ class Task extends Component {
                 <ExchangeRateCard rates={this.state.rates} base={this.state.base} />
                 { /* Replace this example table with your solution below. */}
                 <ExampleTable />
+                <TestTable rates={this.state.rates} base={this.state.base} />
             </div>
         );
     }
