@@ -6,7 +6,7 @@ class TestTable extends Component {
     constructor(props) {
         super(props);
 
-        const uniqueStore = this.getUniqueStoreList(data)
+        const uniqueStore = this.getUniqueStoreList()
 
         this.state = {
             id: null,
@@ -32,15 +32,17 @@ class TestTable extends Component {
         };
     }
 
-    getUniqueStoreList(givenData) {
+    getUniqueStoreList() {
         let uniqueList = {}
-        for (var item in givenData) {
+        for (var item in data) {
             console.log(item)
-            if (!(givenData.store in uniqueList)) {
-                uniqueList[givenData.store] = item;
+            if (!(data.store in uniqueList)) {
+                console.log(data.store)
+                uniqueList[data.store] = item.store;
                 // Object.keys(data).forEach()
             }
         }
+        console.log(uniqueList)
         return uniqueList
     }
 
