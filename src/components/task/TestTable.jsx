@@ -6,8 +6,12 @@ class TestTable extends Component {
     constructor(props) {
         super(props);
 
+        // get the distinct values of stores to look up
         const distictStore = [...new Set(data.map(x => x.store))];
-        // console.log(distictStore);
+        const lookupStore = {}
+        for (var i in distictStore) {
+            lookupStore[distictStore[i]] = distictStore[i];
+        }
 
         this.state = {
             id: null,
@@ -22,7 +26,7 @@ class TestTable extends Component {
                 { title: 'Index', field: 'index', filtering: false },
                 { title: 'Country', field: 'country', lookup: { "USA": "America", "NZL": "New Zealand", "AUS": "Australia" }, },
                 { title: 'Value', field: 'value', filtering: false },
-                { title: 'Store', field: 'store' },
+                { title: 'Store', field: 'store', lookup: lookupStore },
                 { title: 'Returned', field: 'returned' },
                 {
                     title: 'Currency',
