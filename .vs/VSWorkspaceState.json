@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
     "\\src\\components",
     "\\src\\components\\data",
@@ -8,6 +9,6 @@
     "\\src\\components\\objectives",
     "\\src\\components\\task"
   ],
-  "SelectedNode": "\\src\\components\\task\\ExampleTable.jsx",
+  "SelectedNode": "\\src\\index.js",
   "PreviewInSolutionExplorer": false
 }

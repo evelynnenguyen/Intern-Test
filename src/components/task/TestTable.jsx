@@ -6,6 +6,8 @@ class TestTable extends Component {
     constructor(props) {
         super(props);
 
+        const uniqueStore = this.getUniqueStoreList(data)
+
         this.state = {
             id: null,
             index: null,
@@ -19,7 +21,7 @@ class TestTable extends Component {
                 { title: 'Index', field: 'index', filtering: false },
                 { title: 'Country', field: 'country', lookup: { "USA": "America", "NZL": "New Zealand", "AUS": "Australia" }, },
                 { title: 'Value', field: 'value', filtering: false },
-                { title: 'Store', field: 'store' },
+                { title: 'Store', field: 'store', lookup: uniqueStore },
                 { title: 'Returned', field: 'returned' },
                 {
                     title: 'Currency',
@@ -28,6 +30,18 @@ class TestTable extends Component {
                 },
             ],
         };
+    }
+
+    getUniqueStoreList(givenData) {
+        let uniqueList = {}
+        for (var item in givenData) {
+            console.log(item)
+            if (!(givenData.store in uniqueList)) {
+                uniqueList[givenData.store] = item;
+                // Object.keys(data).forEach()
+            }
+        }
+        return uniqueList
     }
 
 //    componentDidMount() {
