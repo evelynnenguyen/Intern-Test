@@ -27,7 +27,7 @@ class TestTable extends Component {
                 { title: 'Country', field: 'country', lookup: { "USA": "America", "NZL": "New Zealand", "AUS": "Australia" }, },
                 { title: 'Value', field: 'value', filtering: false },
                 { title: 'Store', field: 'store', lookup: lookupStore },
-                { title: 'Returned', field: 'returned' },
+                { title: 'Returned', field: 'returned', type: 'boolean', lookup: {true: "Returned", false: "Not Returned"} },
                 {
                     title: 'Currency',
                     field: 'country',
