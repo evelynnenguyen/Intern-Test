@@ -6,7 +6,8 @@ class TestTable extends Component {
     constructor(props) {
         super(props);
 
-        const uniqueStore = this.getUniqueStoreList()
+        const distictStore = [...new Set(data.map(x => x.store))];
+        // console.log(distictStore);
 
         this.state = {
             id: null,
@@ -21,7 +22,7 @@ class TestTable extends Component {
                 { title: 'Index', field: 'index', filtering: false },
                 { title: 'Country', field: 'country', lookup: { "USA": "America", "NZL": "New Zealand", "AUS": "Australia" }, },
                 { title: 'Value', field: 'value', filtering: false },
-                { title: 'Store', field: 'store', lookup: uniqueStore },
+                { title: 'Store', field: 'store' },
                 { title: 'Returned', field: 'returned' },
                 {
                     title: 'Currency',
@@ -30,20 +31,6 @@ class TestTable extends Component {
                 },
             ],
         };
-    }
-
-    getUniqueStoreList() {
-        let uniqueList = {}
-        for (var item in data) {
-            console.log(item)
-            if (!(data.store in uniqueList)) {
-                console.log(data.store)
-                uniqueList[data.store] = item.store;
-                // Object.keys(data).forEach()
-            }
-        }
-        console.log(uniqueList)
-        return uniqueList
     }
 
 //    componentDidMount() {
