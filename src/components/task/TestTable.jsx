@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import data from "../data/data";
 import MaterialTable from 'material-table';
+import { Typography } from '@material-ui/core';
+import axios from 'axios';
+
+const API_URL = 'http://www.mocky.io/v2/5d4caeb23100000a02a95477';
 
 class TestTable extends Component {
     constructor(props) {
@@ -20,14 +24,15 @@ class TestTable extends Component {
             value: null,
             store: null,
             returned: null,
-
+            originalData: null,
+            isLoaded: false,
             columns: [
 //                { title: 'ID', field: 'id', filtering: false },
                 { title: 'Index', field: 'index', filtering: false },
                 { title: 'Country', field: 'country', lookup: { "USA": "America", "NZL": "New Zealand", "AUS": "Australia" }, },
                 { title: 'Value', field: 'value', filtering: false },
                 { title: 'Store', field: 'store', lookup: lookupStore },
-                { title: 'Returned', field: 'returned', type: 'boolean', lookup: {true: "Returned", false: "Not Returned"} },
+                { title: 'Returned', field: 'returned', type: 'boolean', lookup: {false: "Not Returned"} },
                 {
                     title: 'Currency',
                     field: 'country',
@@ -37,25 +42,32 @@ class TestTable extends Component {
         };
     }
 
-//    componentDidMount() {
-        // fetch API to get data
-//        fetch("http://www.mocky.io/v2/5d4caeb23100000a02a95477")
-//            .then(response => response.json())
-//            .then(sampledata => this.setState({ ...sampledata }));
-//    }
+    componentDidMount() {
+        // fetch API to get all data
+        axios.get(API_URL)
+            .then(response => response.data)
+            .then(sales => {
+                this.setState({ orignalData: sales });
+                this.setState({ isLoaded: true });
+            });
+    }
 
     render() {
         return (
             <div>
-                <MaterialTable
-                    title="Evelynne's Table"
-                    columns={this.state.columns}
-                    data={data}
-                    options={{
-                        filtering: true
-                    }}
-                    
+                {this.state.isLoaded ? (
+                    <MaterialTable
+                        title="Sale's Table"
+                        columns={this.state.columns}
+                        data={this.state.orignalData}
+                        options={{
+                            filtering: true
+                        }}
+
                     />
+                ) : (
+                        <Typography>Loading data</Typography>
+                    )}
             </div>
         )
     }
