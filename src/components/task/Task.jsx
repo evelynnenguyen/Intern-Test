@@ -66,9 +66,6 @@ class Task extends Component {
                         <Typography>Loading data</Typography>
                     )
                 }
-
-                {/* <ExchangeRateCard rates={this.state.rates} base={this.state.base} />
-                <DynamicTable rates={this.state.rates} base={this.state.base} /> */}
             </div>
         );
     }
