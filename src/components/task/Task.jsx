@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import {Card, CardContent, Typography} from "@material-ui/core";
 
 import ExchangeRateCard from "./ExchangeRateCard";
-import ExampleTable from "./ExampleTable";
-import TestTable from "./TestTable";
+import DynamicTable from "./DynamicTable";
 
 
 // import data from "../../data";
@@ -20,13 +19,17 @@ class Task extends Component {
             USD: null,
             AUD: null,
         },
+        isLoaded: false
     };
 
     componentDidMount() {
         // fetch API to get base exchange rates for USD  / NZD / AUS
         fetch("http://www.mocky.io/v2/5d4cb480310000c503a95480")
             .then(response => response.json())
-            .then(response => this.setState({ ...response }));
+            .then(response => {
+                this.setState({ ...response });
+                this.setState({isLoaded: true});
+            });
     }
 
     render() {
@@ -52,10 +55,20 @@ class Task extends Component {
                         </Typography>
                     </CardContent>
                 </Card>
-                <ExchangeRateCard rates={this.state.rates} base={this.state.base} />
-                { /* Replace this example table with your solution below. */}
-                <ExampleTable />
-                <TestTable rates={this.state.rates} base={this.state.base} />
+
+                { this.state.isLoaded ?
+                    (
+                        <div>
+                            <ExchangeRateCard rates={this.state.rates} base={this.state.base} />
+                            <DynamicTable rates={this.state.rates} base={this.state.base} /> 
+                        </div>
+                    ) : (
+                        <Typography>Loading data</Typography>
+                    )
+                }
+
+                {/* <ExchangeRateCard rates={this.state.rates} base={this.state.base} />
+                <DynamicTable rates={this.state.rates} base={this.state.base} /> */}
             </div>
         );
     }
