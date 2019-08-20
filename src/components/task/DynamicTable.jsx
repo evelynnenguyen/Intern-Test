@@ -58,7 +58,8 @@ class DynamicTable extends Component {
                 { title: 'Value', field: 'value', filtering: false },
                 { title: 'Store', field: 'store', lookup: lookupStore },
                 { title: 'Returned', field: 'returned', type: 'boolean', lookup: { false: "Not Returned" } },
-                { title: 'Currency', field: 'currency', filtering: false, sorting: false}
+                { title: 'Currency', field: 'currency', filtering: false, sorting: false},
+                { title: 'Sales In', field: 'country', lookup: {"USA": "USD", "NZL": "NZD", "AUS": "AUD"}}
             ],
         };
     }
